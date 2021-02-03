@@ -1,6 +1,5 @@
 function getTodos() {
 	const xhr = new XMLHttpRequest();
-
 	xhr.open('GET', 'https://jsonplaceholder.typicode.com/todos');
 	xhr.send();
 
@@ -14,16 +13,15 @@ function getTodos() {
 }
 
 function createTodos(todoTitle,todoCompleted) {
-
 	const ulTodo = document.querySelector('.js-list-todo');
 	const list = document.createElement('li');
 	list.className = `list-group-item list-group-item-action d-flex 
 	justify-content-between rounded-pill`
 
 	if (todoCompleted) {
-		list.classList.add('list-group-item-info');
+		list.classList.add('list-group-item-success');
 	} else {
-		list.classList.add('list-group-item-secondary');
+		list.classList.add('list-group-item-warning');
 	}
 
 	list.textContent = todoTitle;
