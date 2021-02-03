@@ -5,27 +5,28 @@ function getTodos() {
 	xhr.send();
 
 	xhr.onload = () => {
-   	const objectTodos = JSON.parse(xhr.response);
+   	const todos = JSON.parse(xhr.response);
 
-   	objectTodos.map((todo) => {
-   		createTodo(todo.title);
-
-   		if (todo.completed === true) {
-   			console.log('true', todo.completed);	
-   		} else {
-   		}
+   	todos.map((todo) => {
+   		createTodos(todo.title,todo.completed);	
    	});
 	}
 }
 
-function createTodo(todoTitle) {
+function createTodos(todoTitle,todoCompleted) {
+
 	const ulTodo = document.querySelector('.js-list-todo');
 	const list = document.createElement('li');
+	list.className = `list-group-item list-group-item-action d-flex 
+	justify-content-between rounded-pill`
 
-	list.className = `list-group-item list-group-item-secondary   
-	list-group-item-action d-flex justify-content-between rounded-pill`;
+	if (todoCompleted) {
+		list.classList.add('list-group-item-info');
+	} else {
+		list.classList.add('list-group-item-secondary');
+	}
+
 	list.textContent = todoTitle;
-	
 	ulTodo.prepend(list);
 }
 
