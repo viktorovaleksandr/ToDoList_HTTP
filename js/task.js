@@ -4,9 +4,9 @@ function getTodos() {
 	xhr.send();
 
 	xhr.onload = () => {
-   	const todos = JSON.parse(xhr.response);
+   	const responseObj = JSON.parse(xhr.response);
 
-   	todos.map((todo) => {
+   	responseObj.map((todo) => {
    		createTodos(todo.title,todo.completed);	
    	});
 	}
@@ -25,7 +25,7 @@ function createTodos(todoTitle,todoCompleted) {
 	}
 
 	list.textContent = todoTitle;
-	ulTodo.prepend(list);
+	ulTodo.append(list);
 }
 
 getTodos();
